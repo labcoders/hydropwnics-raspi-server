@@ -61,6 +61,12 @@ def pump():
     elif request.method == 'GET':
         return pump_get()
 
+@app.route('/music', methods=['POST'])
+def pump():
+    if request.method == 'POST':
+        return music_set()
+
+
 def pump_set():
     r = request.json
     return jsonify(
@@ -75,3 +81,12 @@ def pump_get():
             state=HYPE_BUS.get_pump().ok,
         ),
     )
+
+def music_set():
+    r = request.json
+    return jsonify(
+        dict(
+            ok=HYPE_BUS.set_music(r['state']).ok,
+        ),
+    )
+

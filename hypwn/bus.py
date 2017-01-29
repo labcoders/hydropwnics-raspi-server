@@ -192,6 +192,25 @@ class PumpRelaySet(Request):
         self._serializer.put.byte(self.setting)
         return self._serializer.dump()
 
+
+class MusicSet(Request):
+    DEVICE_ID = 5
+    ACTION_CODE = 1 #0 means information, 1 means setting on device
+
+    def __init__(self, setting=0, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.setting = setting
+        self.serialized = Cached(self._serialize)
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.setting)
+        return self._serializer.dump()
+
+
 class BooleanResponse:
     @classmethod
     def deserialize(cls, data):
@@ -214,6 +233,11 @@ class DoubleResponse:
 
 class PumpRelayResponse(BooleanResponse):
     pass
+
+
+class MusicResponse(BooleanResponse):
+    pass
+
 
 class LightRelaySet(Request):
     DEVICE_ID = 1
@@ -381,6 +405,10 @@ class Hype:
     def set_pump(self, state):
         self.send(PumpRelaySet(state))
         return PumpRelayResponse.deserialize(self.read())
+
+    def set_music(self, state):
+        self.send(MusicSet(state))
+        return MusicResponse.deserialize(self.read())
 
     def get_pump(self):
         self.send(PumpRelayRequest())
