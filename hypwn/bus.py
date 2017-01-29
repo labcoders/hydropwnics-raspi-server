@@ -402,7 +402,7 @@ class Hype:
 
     def _read_byte(self):
         b = self.bus.read(1)[0]
-        print ('>', b)
+        print('>', b)
         return b
 
     def write(self, data):
