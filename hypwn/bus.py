@@ -189,8 +189,7 @@ class Hype:
 
     def write(self, data):
         # TODO actually use a bulk write
-        for b in data:
-            self._write_byte(b)
+        self.bus.write_byte_data(self.address, 0, data)
 
     def send(self, request):
         self.write(request.serialized.value)
