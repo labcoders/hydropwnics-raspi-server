@@ -30,6 +30,10 @@
     return get('/pump');
   }
 
+  function setMusic(success) {
+    return set('/music');
+  }
+
   function setLight(state, success) {
     return post('/light/internal', {state: state}, success);
   }
