@@ -191,7 +191,9 @@ class Hype:
         self.bus.write_i2c_block_data(self.address, 0, list(data))
 
     def send(self, request):
-        self.write(request.serialized.value)
+        d = request.serialized.value
+        print(d)
+        self.write(d)
 
     def read(self):
         rb = self._read_byte
