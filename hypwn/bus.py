@@ -169,7 +169,7 @@ class Hype:
     class InternalServerError(Exception):
         pass
 
-    TTY = '/dev/ttyUSB0'
+    TTY = '/dev/ttyUSB1'
 
     def __init__(
         self,
