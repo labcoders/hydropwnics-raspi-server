@@ -42,7 +42,7 @@
     return get('/light/ambient', success);
   }
 
-  function makeToggle(toggleFunction, name) {
+  function makeToggle(name, toggleFunction) {
     var inputSelector = 'input[name=' + name + ']';
     var input = $(inputSelector);
     input.click(function() {
