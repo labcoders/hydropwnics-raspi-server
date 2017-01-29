@@ -138,8 +138,14 @@ class Response:
         raise NotImplementedError('Response.deserialize')
 
 class EchoRequest(Request):
+    DEVICE_ID = 255
+    ACTION_CODE = 0
+
     def __init__(self, echo=0xff, serializer=None):
-        self._serializer = serializer or RequestSerializer()
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
         self.serialized = Cached(self._serialize)
         self.echo = echo
 
