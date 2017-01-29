@@ -62,7 +62,7 @@ def pump():
         return pump_get()
 
 @app.route('/music', methods=['POST'])
-def pump():
+def music():
     if request.method == 'POST':
         return music_set()
 
