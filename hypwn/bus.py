@@ -409,7 +409,7 @@ class Hype:
             return LightSensorResponse.deserialize(self.read())
         elif location == 'internal':
             self.send(LightRelayRequest())
-            return LightRelayResponse.deserialize(self.read())
+            return LightResponse.deserialize(self.read())
         else:
             raise Exception('Invalid location.')
 
