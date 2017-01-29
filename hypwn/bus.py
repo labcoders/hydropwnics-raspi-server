@@ -182,10 +182,10 @@ class Hype:
         self.deserializer = response_deserializer
 
     def _write_byte(self, byte):
-        self.bus.write_byte_data(self.address, byte)
+        self.bus.write_byte_data(self.address, 0, byte)
 
     def _read_byte(self):
-        self.bus.read_byte_data(self.address)
+        self.bus.read_byte_data(self.address, 0)
 
     def write(self, data):
         # TODO actually use a bulk write
