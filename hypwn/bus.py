@@ -213,7 +213,7 @@ class Hype:
         )
         body = bytearray(rb() for _ in range(length))
 
-        print('read body', body)
+        print('read body', body, '- length', length)
 
         return body
 
