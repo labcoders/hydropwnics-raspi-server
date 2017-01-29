@@ -325,6 +325,21 @@ class EchoResponse(Response):
     def __init__(self, echo):
         self.echo = echo
 
+class BadRequest(Request, NoArgsMixin):
+    DEVICE_ID = 27
+    ACTION_CODE = 0
+
+    def __init__(self, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+
+class BadResponse(BooleanResponse):
+    pass
+
+
 class Hype:
     class InternalServerError(Exception):
         pass
@@ -413,3 +428,7 @@ class Hype:
     def get_pump(self):
         self.send(PumpRelayRequest())
         return PumpRelayResponse.deserialize(self.read())
+
+    def bad(self):
+        self.send(BadRequest())
+        return BadResponse.deserialize(self.read())
