@@ -1,4 +1,5 @@
-from . import app, HYPE_BUS, redirect
+from . import app, HYPE_BUS
+from flask import redirect
 
 @app.route('/')
 def index():
