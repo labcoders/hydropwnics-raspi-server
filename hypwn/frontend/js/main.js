@@ -69,7 +69,7 @@
 
   function makeSensor(name, get) {
     var displaySelector = '#' + name;
-    var display $(displaySelector);
+    var display = $(displaySelector);
     return {
       input: input,
       get: get,
@@ -109,7 +109,8 @@
       light: makeSensor('light-sensor-display', getAmbientLight),
       temperature: makeSensor(
         'temperature-sensor-display',
-        getAmbientTemperature),
+        getAmbientTemperature
+      ),
     };
 
     console.log('setup toggles complete');
