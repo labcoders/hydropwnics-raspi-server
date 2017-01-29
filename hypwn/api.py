@@ -6,7 +6,7 @@ from flask import request
 def index():
     return 'hello world'
 
-@app.route('/echo')
+@app.route('/echo', methods=['POST'])
 def echo():
     if request.method == 'POST':
         d = request.json
