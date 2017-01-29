@@ -187,7 +187,7 @@ class Hype:
         self.bus.write(bytearray((byte,)))
 
     def _read_byte(self):
-        return self.bus.read(1)
+        return self.bus.read(1)[0]
 
     def write(self, data):
         self.bus.write(data)
