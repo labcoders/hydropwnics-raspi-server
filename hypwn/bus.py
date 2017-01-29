@@ -139,6 +139,178 @@ class Response:
     def deserialize(cls, data):
         raise NotImplementedError('Response.deserialize')
 
+#PumpRelayStatus - uint8()
+
+#PumpRelayRequest - short(1)
+
+
+class PumpRelayRequest(Request):
+    DEVICE_ID = 0
+    ACTION_CODE = 0 #0 means information, 1 means setting on device
+
+    def __init__(self, pump=0x00, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+        self.pump= pump
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.pump)
+        return self._serializer.dump()
+
+class PumpRelaySet(Request):
+    DEVICE_ID = 0
+    ACTION_CODE = 1 #0 means information, 1 means setting on device
+
+    def __init__(self, pump=0x00,setting=0, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.setting = setting
+        self.serialized = Cached(self._serialize)
+        self.pump= pump
+
+    def _serialize(self):
+        self._serializer.put.short(2) #arg len
+        self._serializer.put.byte(self.pump)
+        self._serializer.put.byte(self.setting)
+        return self._serializer.dump()
+
+
+
+class PumpRelayResponse(Response):
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.uint8()
+        return cls(n)
+
+    def __init__(self, pump):
+        self.pump =pump
+
+#LightRelayRequest - short(1)
+
+#LightRelayResponse - u.int8()
+
+class LightRelaySet(Request):
+    DEVICE_ID = 1
+    ACTION_CODE = 1 #0 means information, 1 means setting on device
+
+    def __init__(self, light=0x01,setting=0, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.setting = setting
+        self.serialized = Cached(self._serialize)
+        self.light= light
+
+    def _serialize(self):
+        self._serializer.put.short(2) #arg len
+        self._serializer.put.byte(self.light)
+        self._serializer.put.byte(self.setting)
+        return self._serializer.dump()
+
+
+class LightRelayRequest(Request):
+    DEVICE_ID = 1
+    ACTION_CODE = 0 #0 means information, 1 means setting on device
+
+    def __init__(self, light=0x01, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+        self.light= light
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.light)
+        return self._serializer.dump()
+
+class LightRelayResponse(Response):
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.uint8()
+        return cls(n)
+
+    def __init__(self, light):
+        self.light = light
+
+
+#LightSensorRequest - short(1)
+
+#LightSensorResponse - double
+
+
+class LightSensorRequest(Request):
+    DEVICE_ID = 2
+    ACTION_CODE = 0
+
+    def __init__(self, lightS=0x02, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+        self.lightS = lightS
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.lightS)
+        return self._serializer.dump()
+
+class LightSensorResponse(Response):
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.double()
+        return cls(n)
+
+    def __init__(self, echo):
+        self.lightS= lightS
+
+
+#TempSensorRrquest - short(1) - 4
+
+#TempSensorResponse - double - 4
+
+class TempSensorRequest(Request):
+    DEVICE_ID = 4
+    ACTION_CODE = 0
+
+    def __init__(self, tempS=0x04, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+        self.tempS= tempS
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.tempS)
+        return self._serializer.dump()
+
+class TempSensorResponse(Response):
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.double()
+        return cls(n)
+
+    def __init__(self, echo):
+        self.tempS= tempS
+
+
+
+
 class EchoRequest(Request):
     DEVICE_ID = 255
     ACTION_CODE = 0
@@ -152,7 +324,37 @@ class EchoRequest(Request):
         self.echo = echo
 
     def _serialize(self):
-        self._serializer.put.short(1)
+        self._serializer.put.short(1) #arg len
+        self._serializer.put.byte(self.echo)
+        return self._serializer.dump()
+
+class EchoResponse(Response):
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.uint8()
+        return cls(n)
+
+    def __init__(self, echo):
+        self.echo = echo
+
+
+
+
+class EchoRequest(Request):
+    DEVICE_ID = 255
+    ACTION_CODE = 0
+
+    def __init__(self, echo=0xff, serializer=None):
+        self._serializer = serializer or RequestSerializer(
+            self.DEVICE_ID,
+            self.ACTION_CODE,
+        )
+        self.serialized = Cached(self._serialize)
+        self.echo = echo
+
+    def _serialize(self):
+        self._serializer.put.short(1) #arg len
         self._serializer.put.byte(self.echo)
         return self._serializer.dump()
 
@@ -224,3 +426,8 @@ class Hype:
     def echo(self, value):
         self.send(EchoRequest(value))
         return EchoResponse.deserialize(self.read())
+
+
+#binary
+
+#temperature is double

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if test -z "$HOST" ; then
-  HOST=10.0.0.155
+  HOST=10.0.100.1
 fi
 if test -z "$REMOTE_USER" ; then
   REMOTE_USER=pi
