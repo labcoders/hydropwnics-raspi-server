@@ -61,6 +61,12 @@ def pump():
     elif request.method == 'GET':
         return pump_get()
 
+@app.route('/music', methods=['POST'])
+def pump():
+    if request.method == 'POST':
+        return music_set()
+
+
 def pump_set():
     r = request.json
     return jsonify(
