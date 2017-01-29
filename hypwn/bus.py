@@ -139,13 +139,13 @@ class ResponseDeserializer:
         )
 
     def float(self):
-        return struct.pack(
+        return struct.unpack(
             'f',
             self._get(4),
         )[0]
 
     def double(self):
-        return struct.pack(
+        return struct.unpack(
             'd',
             self._get(8),
         )[0]
