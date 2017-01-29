@@ -134,6 +134,15 @@ class ResponseDeserializer:
             signed=True,
         )
 
+    def double(self):
+        return from_bytes(
+            self._get(8),
+            self.endianness,
+            signed=False,
+        )
+
+
+
 class Response:
     @classmethod
     def deserialize(cls, data):
