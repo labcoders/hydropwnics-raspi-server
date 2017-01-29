@@ -65,7 +65,8 @@
   }
 
   function pollToggles(toggles) {
-    Object.keys(toggles).forEach(function(k) {
+    Object.keys(toggles).forEach(function(k_) {
+      var k = k_;
       var toggle = toggles[k];
       toggle.get(function(data) {
         var state = data['state'] ? 'on' : 'off';
