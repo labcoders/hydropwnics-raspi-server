@@ -7,6 +7,7 @@
   <body>
     <h1> Hydropwnics Rootkit Web UI </h1>
     <div id="peripheral-controls">
+      <h2> Toggles </h2>
       <div>
         <h3> Pump </h3>
         <label for="pump-on">
@@ -28,6 +29,16 @@
           <input id="light-off" type="radio" name="light" value="off">
           <span class="label-text"> Off </span>
         </label>
+      </div>
+    </div>
+    <div id='sensor-information'>
+      <div>
+        <h3> Ambient light </h3>
+        <p id='light-sensor-display'> N/A </p>
+      </div>
+      <div>
+        <h3> Ambient temperature </h3>
+        <p id='temperature-sensor-display'> N/A </p>
       </div>
     </div>
   </body>

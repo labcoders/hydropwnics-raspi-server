@@ -46,6 +46,9 @@
     return get('/light/ambient', success);
   }
 
+  function getAmbientTemperature(success) {
+    return get('/temperature', success);
+  }
 
   function makeToggle(name, toggleFunction, getFunction) {
     var inputSelector = 'input[name=' + name + ']';
@@ -65,7 +68,12 @@
   }
 
   function makeSensor(name, get) {
-
+    var displaySelector = '#' + name;
+    var display $(displaySelector);
+    return {
+      input: input,
+      get: get,
+    };
   }
 
   function pollToggles(toggles) {
@@ -82,7 +90,13 @@
   }
 
   function pollSensors(sensors) {
-
+    Object.keys(sensors).forEach(function(k) {
+      var sensor = sensor[k];
+      sensor.get(function(data) {
+        var value = data['value'];
+        sensor.input.value(value);
+      });
+    });
   }
 
   $(function() {
@@ -92,7 +106,10 @@
     };
 
     var sensors = {
-      light: makeSensor('light-sensor', getAmbientLight),
+      light: makeSensor('light-sensor-display', getAmbientLight),
+      temperature: makeSensor(
+        'temperature-sensor-display',
+        getAmbientTemperature),
     };
 
     console.log('setup toggles complete');
