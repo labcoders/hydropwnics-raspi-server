@@ -93,6 +93,7 @@
     Object.keys(sensors).forEach(function(k_) {
       var k = k_;
       var sensor = sensors[k];
+      console.log('Polling ' + k);
       sensor.get(function(data) {
         var value = data['value'];
         sensor.display.text(value);
@@ -107,8 +108,8 @@
     };
 
     var sensors = {
-      light: makeSensor('light-sensor-display', getAmbientLight),
-      temperature: makeSensor(
+      lightSensor: makeSensor('light-sensor-display', getAmbientLight),
+      temperatureSensor: makeSensor(
         'temperature-sensor-display',
         getAmbientTemperature
       ),
