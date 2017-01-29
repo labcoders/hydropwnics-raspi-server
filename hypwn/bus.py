@@ -213,4 +213,4 @@ class Hype:
 
     def echo(self, value):
         self.send(EchoRequest(value))
-        return EchoResponse.parse(self.read_response())
+        return EchoResponse.deserialize(self.read_response())
