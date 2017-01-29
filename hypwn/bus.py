@@ -78,6 +78,10 @@ class ResponseDeserializer:
         self.endianness = endianness
 
     def _get_noincrement(self, count):
+        print(
+            '_get_noincrement:',
+            self.offset, '+', count, '<?', len(self.data),
+        )
         return self.data[self.offset:min(self.offset+count, len(self.data))]
 
     def _get(self, count):
