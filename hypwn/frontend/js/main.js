@@ -58,5 +58,5 @@
     makeToggle('pump', setPump);
     makeToggle('light', setLight);
   });
-});
+})();
 
