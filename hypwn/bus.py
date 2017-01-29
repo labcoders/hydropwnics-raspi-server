@@ -57,7 +57,7 @@ class RequestSerializer:
 class Cached:
     def __init__(self, f):
         self.f = f
-        self._value
+        self._value = None
         self.computed = False
 
     @property
