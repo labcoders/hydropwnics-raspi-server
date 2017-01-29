@@ -5,13 +5,30 @@
     <link rel='stylesheet' media='screen' href='/static/css/hypwn.css'>
   </head>
   <body>
-    <div>
-      <input type="radio" name="pump" value="on">
-      <input type="radio" name="pump" value="off">
-    </div>
-    <div>
-      <input type="radio" name="light" value="on">
-      <input type="radio" name="light" value="off">
+    <h1> Hydropwnics Rootkit Web UI </h1>
+    <div id="peripheral-controls">
+      <div>
+        <h3> Pump </h3>
+        <label for="pump-on">
+          On
+          <input id="pump-on" type="radio" name="pump" value="on">
+        </label>
+        <label for="pump-off">
+          Off
+          <input id="pump-off" type="radio" name="pump" value="off">
+        </label>
+      </div>
+      <div>
+        <h3> Light </h3>
+        <label for="light-on">
+          On
+          <input id="light-on" type="radio" name="light" value="on">
+        </label>
+        <label for="light-off">
+          Off
+          <input id="light-off" type="radio" name="light" value="off">
+        </label>
+      </div>
     </div>
   </body>
 </html>

@@ -6,4 +6,17 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
+  font-family: monospace;
+}
+
+h1 {
+  font-size:200%;
+}
+
+div#peripheral-controls > div {
+  margin: 2em 0;
+}
+
+div#peripheral-controls > div > label {
+  display: block;
 }
