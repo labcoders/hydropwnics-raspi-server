@@ -15,18 +15,18 @@ h1 {
   font-size:200%;
 }
 
-div#peripheral-controls {
+div.info-section {
   padding: 0 1em;
 }
 
-div#peripheral-controls > div {
+div.info-section > div {
   padding: 0 1em;
   margin: 2em 0;
 }
 
-div#peripheral-controls > div > label {
+div.info-section > div > label {
   display: block;
 }
 
-div#peripheral-controls > div > label > span.label-text {
+div.info-section > div > label > span.label-text {
 }

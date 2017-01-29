@@ -50,7 +50,7 @@
     return get('/temperature', success);
   }
 
-  function playMusic(success) {
+  function playStarWars(success) {
     return post('/music', {state: 1}, success);
   }
 
@@ -125,7 +125,7 @@
     setInterval(function() { pollToggles(toggles); }, 1000);
     setInterval(function() { pollSensors(sensors); }, 1000);
 
-    $('#play').click(function() {
+    $('#play-star-wars').click(function() {
       return playMusic(function() {
         console.log('music played');
       });
