@@ -151,6 +151,7 @@ class EchoRequest(Request):
         self.echo = echo
 
     def _serialize(self):
+        self._serializer.put.short(1)
         self._serializer.put.byte(self.echo)
         return self._serializer.dump()
 
