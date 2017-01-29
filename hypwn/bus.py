@@ -173,7 +173,7 @@ class Hype:
     TTY = [
         p
         for p
-        in ('/dev/ttyUSB%d' % (n,) for n in (1,2,3,4))
+        in ('/dev/ttyUSB%d' % (n,) for n in (0,1,2,3,4))
         if path.exists(p)
     ][0]
 
