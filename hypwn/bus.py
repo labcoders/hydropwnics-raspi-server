@@ -175,11 +175,9 @@ class Hype:
         self,
         bus_number=BUS_NUMBER,
         address=ADDRESS,
-        response_deserializer=None,
     ):
         self.bus = smbus.SMBus(bus_number)
         self.address = address
-        self.deserializer = response_deserializer
 
     def _write_byte(self, byte):
         self.bus.write_byte_data(self.address, 0, byte)
@@ -208,9 +206,6 @@ class Hype:
 
         return body
 
-    def read_response(self):
-        return self.deserializer.deserialize(self.read())
-
     def echo(self, value):
         self.send(EchoRequest(value))
-        return EchoResponse.deserialize(self.read_response())
+        return EchoResponse.deserialize(self.read())
