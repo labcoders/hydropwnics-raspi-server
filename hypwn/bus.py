@@ -193,7 +193,7 @@ class Hype:
     def send(self, request):
         d = request.serialized.value
         print(d)
-        self.write(b''.join(b for _, b in d))
+        self.write(d)
 
     def read(self):
         rb = self._read_byte
