@@ -213,6 +213,8 @@ class Hype:
         )
         body = bytearray(rb() for _ in range(length))
 
+        print('read body', body)
+
         return body
 
     def echo(self, value):
