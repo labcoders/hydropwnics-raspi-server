@@ -46,6 +46,7 @@
     var inputSelector = 'input[name=' + name + ']';
     var input = $(inputSelector);
     input.click(function() {
+      console.log('toggled ' + name);
       var value = input.filter(':checked').val();
       toggleFunction(value == 'on', function(data){
         console.log(JSON.stringify(data));
