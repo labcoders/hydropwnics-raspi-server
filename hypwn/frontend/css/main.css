@@ -14,7 +14,12 @@ h1 {
   font-size:200%;
 }
 
+div#peripheral-controls {
+  padding: 0 1em;
+}
+
 div#peripheral-controls > div {
+  padding: 0 1em;
   margin: 2em 0;
 }
 
