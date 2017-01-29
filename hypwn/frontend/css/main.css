@@ -27,6 +27,6 @@ div#peripheral-controls > div > label {
   display: block;
 }
 
-div$peripheral-controls > div > label > span.label-text {
+div#peripheral-controls > div > label > span.label-text {
   min-width: 5em;
 }
