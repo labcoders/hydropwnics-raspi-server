@@ -151,7 +151,7 @@ class EchoRequest(Request):
         self.echo = echo
 
     def _serialize(self):
-        self.serializer.put.byte(self.echo)
+        self._serializer.put.byte(self.echo)
         return self.serialized.dump()
 
 class EchoResponse(Response):
