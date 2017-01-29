@@ -107,41 +107,44 @@ class ResponseDeserializer:
         )
 
     def uint16(self):
-        return from_bytes(
+        return int.from_bytes(
             self._get(2),
             self.endianness,
             signed=False,
         )
 
     def int16(self):
-        return from_bytes(
+        return int.from_bytes(
             self._get(2),
             self.endianness,
             signed=True,
         )
 
     def uint32(self):
-        return from_bytes(
+        return int.from_bytes(
             self._get(4),
             self.endianness,
             signed=False,
         )
 
     def int32(self):
-        return from_bytes(
+        return int.from_bytes(
             self._get(4),
             self.endianness,
             signed=True,
         )
 
+    def float(self):
+        return struct.pack(
+            'f',
+            self._get(4),
+        )[0]
+
     def double(self):
-        return from_bytes(
+        return struct.pack(
+            'd',
             self._get(8),
-            self.endianness,
-            signed=False,
-        )
-
-
+        )[0]
 
 class Response:
     @classmethod
