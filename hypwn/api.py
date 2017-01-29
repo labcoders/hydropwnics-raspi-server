@@ -76,6 +76,6 @@ def pump_set():
 def pump_get():
     return jsonify(
         dict(
-            state=HYPE_BUS.get_temperature().ok,
+            state=HYPE_BUS.get_pump().ok,
         ),
     )
