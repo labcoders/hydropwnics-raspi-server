@@ -28,6 +28,4 @@ div#peripheral-controls > div > label {
 }
 
 div#peripheral-controls > div > label > span.label-text {
-  min-width: 5em;
-  display: inline-block;
 }
