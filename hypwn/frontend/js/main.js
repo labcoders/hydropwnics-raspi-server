@@ -126,7 +126,7 @@
     setInterval(function() { pollSensors(sensors); }, 1000);
 
     $('#play-star-wars').click(function() {
-      return playMusic(function() {
+      return playStarWars(function() {
         console.log('music played');
       });
     });
