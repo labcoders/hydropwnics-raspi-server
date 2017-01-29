@@ -97,9 +97,7 @@
     Object.keys(sensors).forEach(function(k_) {
       var k = k_;
       var sensor = sensors[k];
-      console.log('Polling ' + k);
       sensor.get(function(data) {
-        console.log('sensor ' + k + ': ' + JSON.stringify(data));
         var value = data['value'];
         sensor.display.text(value);
       });
