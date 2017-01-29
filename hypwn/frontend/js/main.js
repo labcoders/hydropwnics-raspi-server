@@ -16,7 +16,7 @@
   function post(route, body, success) {
     return $.post({
       url: routeUrl(route),
-      data: body,
+      data: JSON.stringify(body),
       contentType: 'application/json',
       success: success,
     });
