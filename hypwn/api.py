@@ -40,11 +40,18 @@ def light_post():
     )
 
 def light_get(location):
-    return jsonify(
-        dict(
-            lightLevel=HYPE_BUS.get_light_level(location).value,
-        ),
-    )
+    if location == 'ambient':
+        return jsonify(
+            dict(
+                lightLevel=HYPE_BUS.get_light_level(location).value,
+            ),
+        )
+    else:
+        return jsonify(
+            dict(
+                lightLevel=HYPE_BUS.get_light_level(location).ok,
+            ),
+        )
 
 @app.route('/temperature', methods=['GET'])
 def temperature():
