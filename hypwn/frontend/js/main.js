@@ -1,6 +1,6 @@
 'use strict';
 (function() {
-  var BASE_URL = "http://localhost:5000";
+  var BASE_URL = "";
 
   function routeUrl(r) {
     return BASE_URL + r
