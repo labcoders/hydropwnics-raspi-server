@@ -94,7 +94,7 @@
       var sensor = sensors[k];
       sensor.get(function(data) {
         var value = data['value'];
-        sensor.display.value(value);
+        sensor.display.text(value);
       });
     });
   }
