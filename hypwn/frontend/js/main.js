@@ -68,9 +68,10 @@
     Object.keys(toggles).forEach(function(k) {
       var toggle = toggles[k];
       toggle.get(function(data) {
-        var state = data['state'];
-        var sel = '[value=' + (state ? 'on' : 'off') + ']';
-        toggle.input.filter(sel).prop(checked, true);
+        var state = data['state'] ? 'on' : 'off';
+        var sel = '[value=' + state + ']';
+        toggle.input.filter(sel).prop('checked', true);
+        console.log('set toggle ' + k + ' to ' + state);
       });
     });
   }
