@@ -8,10 +8,6 @@ def message400(message):
         400,
     )
 
-@app.route('/')
-def index():
-    return 'hello world'
-
 @app.route('/echo', methods=['POST'])
 def echo():
     if request.method == 'POST':
