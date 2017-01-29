@@ -271,7 +271,7 @@ class LightRelayResponse(BooleanResponse):
     pass
 
 class LightSensorRequest(Request, NoArgsMixin):
-    DEVICE_ID = 2
+    DEVICE_ID = 7
     ACTION_CODE = 0
 
     def __init__(self, serializer=None):
@@ -285,7 +285,7 @@ class LightSensorResponse(DoubleResponse):
     pass
 
 class TempSensorRequest(Request, NoArgsMixin):
-    DEVICE_ID = 4
+    DEVICE_ID = 6
     ACTION_CODE = 0
 
     def __init__(self, serializer=None):
