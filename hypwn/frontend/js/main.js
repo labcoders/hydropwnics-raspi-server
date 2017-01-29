@@ -42,7 +42,8 @@
     return get('/light/ambient', success);
   }
 
-  function makeToggle(name, toggleFunction) {
+
+  function makeToggle(name, toggleFunction, getFunction) {
     var inputSelector = 'input[name=' + name + ']';
     var input = $(inputSelector);
     input.click(function() {
@@ -52,12 +53,46 @@
         console.log(JSON.stringify(data));
       });
     });
+    return {
+      input: input,
+      set: toggleFunction,
+      get: getFunction
+    };
+  }
+
+  function makeSensor(name, get) {
+
+  }
+
+  function pollToggles(toggles) {
+    Object.keys(toggles).forEach(function(k) {
+      var toggle = toggles[k];
+      toggle.get(function(data) {
+        var state = data['state'];
+        var sel = '[value=' + (state ? 'on' : 'off') + ']';
+        toggle.input.filter(sel).prop(checked, true);
+      });
+    });
+  }
+
+  function pollSensors(sensors) {
+
   }
 
   $(function() {
-    makeToggle('pump', setPump);
-    makeToggle('light', setLight);
-    console.log('setup toggles');
+    var toggles = {
+      pump: makeToggle('pump', setPump, getPump),
+      light: makeToggle('light', setLight, getLight),
+    };
+
+    var sensors = {
+      light: makeSensor('light-sensor', getAmbientLight),
+    };
+
+    console.log('setup toggles complete');
+
+    setInterval(function() { pollToggles(toggles); }, 1000);
+    setInterval(function() { pollSensors(sensors); }, 1000);
   });
 })();
 
