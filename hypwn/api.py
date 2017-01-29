@@ -43,13 +43,13 @@ def light_get(location):
     if location == 'ambient':
         return jsonify(
             dict(
-                lightLevel=HYPE_BUS.get_light_level(location).value,
+                value=HYPE_BUS.get_light_level(location).value,
             ),
         )
     else:
         return jsonify(
             dict(
-                lightLevel=HYPE_BUS.get_light_level(location).ok,
+                value=HYPE_BUS.get_light_level(location).ok,
             ),
         )
 
