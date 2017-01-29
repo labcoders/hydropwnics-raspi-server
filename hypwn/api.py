@@ -90,3 +90,10 @@ def music_set():
         ),
     )
 
+@app.route('/bad', methods=['POST'])
+def bad():
+    return jsonify(
+        dict(
+            ok=HYPE_BUS.bad().ok,
+        ),
+    )
