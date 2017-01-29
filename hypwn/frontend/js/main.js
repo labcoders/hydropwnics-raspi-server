@@ -57,6 +57,7 @@
   $(function() {
     makeToggle('pump', setPump);
     makeToggle('light', setLight);
+    console.log('setup toggles');
   });
 })();
 
