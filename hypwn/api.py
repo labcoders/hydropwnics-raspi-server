@@ -11,5 +11,5 @@ def echo():
     if request.method == 'POST':
         d = request.json
         b = d['value']
-        b_ = HYPE_BUS.echo(b)
+        b_ = HYPE_BUS.echo(b).echo
         return '{} echoed to {}'.format(b, b_)
