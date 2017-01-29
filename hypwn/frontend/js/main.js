@@ -91,7 +91,7 @@
 
   function pollSensors(sensors) {
     Object.keys(sensors).forEach(function(k) {
-      var sensor = sensor[k];
+      var sensor = sensors[k];
       sensor.get(function(data) {
         var value = data['value'];
         sensor.display.value(value);
