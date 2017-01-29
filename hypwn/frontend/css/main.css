@@ -7,6 +7,7 @@ body {
   padding: 0;
   background-color: black;
   font-family: monospace;
+  color: #ddd;
 }
 
 h1 {
@@ -19,4 +20,8 @@ div#peripheral-controls > div {
 
 div#peripheral-controls > div > label {
   display: block;
+}
+
+div$peripheral-controls > div > label > span.label-text {
+  min-width: 5em;
 }
