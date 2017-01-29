@@ -189,7 +189,7 @@ class Hype:
 
     def write(self, data):
         # TODO actually use a bulk write
-        self.bus.write_i2c_block_data(self.address, 0, data)
+        self.bus.write_i2c_block_data(self.address, 0, list(data))
 
     def send(self, request):
         self.write(request.serialized.value)
