@@ -50,6 +50,10 @@
     return get('/temperature', success);
   }
 
+  function playMusic(success) {
+    return post('/music', {state: 1}, success);
+  }
+
   function makeToggle(name, toggleFunction, getFunction) {
     var inputSelector = 'input[name=' + name + ']';
     var input = $(inputSelector);
@@ -120,6 +124,12 @@
 
     setInterval(function() { pollToggles(toggles); }, 1000);
     setInterval(function() { pollSensors(sensors); }, 1000);
+
+    $('#play').click(function() {
+      return playMusic(function() {
+        console.log('music played');
+      });
+    });
   });
 })();
 
