@@ -1,4 +1,4 @@
-$(shell mkdir -pv dist/{js,css} libs/js)
+$(shell mkdir -pv dist/{js,css} libs/js > ~/mkdir.log)
 
 .PHONY: all html js css
 
