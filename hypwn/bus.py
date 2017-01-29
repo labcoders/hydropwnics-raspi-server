@@ -373,3 +373,11 @@ class Hype:
     def get_temperature(self, location):
         self.send(TempSensorRequest())
         return TempSensorResponse.deserialize(self.read())
+
+    def set_pump(self, state):
+        self.send(PumpRelaySet(state))
+        return PumpRelayResponse.deserialize(self.read())
+
+    def get_pump(self):
+        self.send(PumpRelayRequest())
+        return PumpRelayResponse.deserialize(self.read())
