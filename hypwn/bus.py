@@ -207,7 +207,10 @@ class Hype:
             print('got nonzero status', status)
             raise self.InternalServerError()
 
-        length = int.from_bytes(bytearray([rb(), rb()]))
+        length = int.from_bytes(
+            bytearray([rb(), rb()]),
+            'little',
+        )
         body = bytearray(rb() for _ in range(length))
 
         return body
