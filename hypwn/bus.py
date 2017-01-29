@@ -175,7 +175,7 @@ class Hype:
         self,
         tty=TTY,
     ):
-        self.bus = serial.Serial(TTY)
+        self.bus = serial.Serial(tty)
 
     def _write_byte(self, byte):
         self.bus.write(bytearray((byte,)))
