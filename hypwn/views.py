@@ -1,4 +1,4 @@
-from . import app, HYPE_BUS, render_template, redirect
+from . import app, HYPE_BUS, redirect
 
 @app.route('/')
 def index():
