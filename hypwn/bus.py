@@ -82,7 +82,7 @@ class ResponseDeserializer:
 
     def _get(self, count):
         d = self._get_noincrement(count)
-        offset += d
+        self.offset += d
         return d
 
     def split(self):
