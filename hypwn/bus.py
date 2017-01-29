@@ -39,6 +39,8 @@ class RequestSerializer:
         self.action_code = action_code;
         self.pieces = []
         self._put = Put(self)
+        self._put.byte('peripheral', device_id)
+        self._put.byte('action', action_code)
 
     def _add_piece(self, name, bytes):
         self.pieces.append( (name, bytes) )
@@ -47,12 +49,9 @@ class RequestSerializer:
     def put(self):
         return self._put
 
-    def raw_dump(self):
-        return b''.join(b for name, b in self.pieces)
-
     def dump(self):
-        d = self.raw_dump()
-        return len(d).to_bytes(2, self._put._endianness) + d
+        print('dumped', self.pieces)
+        return bytearray(b''.join(b for name, b in self.pieces))
 
 class Cached:
     def __init__(self, f):
