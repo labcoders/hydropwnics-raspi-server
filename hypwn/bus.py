@@ -1,5 +1,6 @@
 import serial
 import struct
+from os import path
 
 class Request:
     def serialize(self):
@@ -169,7 +170,11 @@ class Hype:
     class InternalServerError(Exception):
         pass
 
-    TTY = '/dev/ttyUSB1'
+    TTY = [
+        p
+        for ('/dev/ttyUSB%d' % (n,) for n in (1,2,3,4))
+        if path.exists(p)
+    ][0]
 
     def __init__(
         self,
