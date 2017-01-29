@@ -207,6 +207,8 @@ class Hype:
 
         if status != 0:
             print('got nonzero status', status)
+            while True:
+                print(rb(), end='')
             raise self.InternalServerError()
 
         length = int.from_bytes(
