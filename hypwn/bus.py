@@ -39,8 +39,9 @@ class RequestSerializer:
         self.action_code = action_code;
         self.pieces = []
         self._put = Put(self)
-        self._put.byte('peripheral', device_id)
-        self._put.byte('action', action_code)
+
+        self._put.byte(device_id)
+        self._put.byte(action_code)
 
     def _add_piece(self, name, bytes):
         self.pieces.append( (name, bytes) )
