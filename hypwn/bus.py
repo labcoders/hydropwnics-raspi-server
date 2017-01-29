@@ -221,6 +221,16 @@ class BooleanResponse:
     def __init__(self, ok):
         self.ok = ok
 
+class Uint32Response:
+    @classmethod
+    def deserialize(cls, data):
+        d = ResponseDeserializer(data)
+        n = d.uint32()
+        return cls(n)
+
+    def __init__(self, value):
+        self.value = value
+
 class DoubleResponse:
     @classmethod
     def deserialize(cls, data):
@@ -281,7 +291,7 @@ class LightSensorRequest(Request, NoArgsMixin):
         )
         self.serialized = Cached(self._serialize)
 
-class LightSensorResponse(DoubleResponse):
+class LightSensorResponse(Uint32Response):
     pass
 
 class TempSensorRequest(Request, NoArgsMixin):
@@ -295,7 +305,7 @@ class TempSensorRequest(Request, NoArgsMixin):
         )
         self.serialized = Cached(self._serialize)
 
-class TempSensorResponse(DoubleResponse):
+class TempSensorResponse(Uint32Response):
     pass
 
 class EchoRequest(Request):
