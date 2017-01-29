@@ -71,7 +71,7 @@
     var displaySelector = '#' + name;
     var display = $(displaySelector);
     return {
-      input: input,
+      display: display,
       get: get,
     };
   }
@@ -94,7 +94,7 @@
       var sensor = sensor[k];
       sensor.get(function(data) {
         var value = data['value'];
-        sensor.input.value(value);
+        sensor.display.value(value);
       });
     });
   }
