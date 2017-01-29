@@ -5,6 +5,6 @@ from flask import redirect, send_from_directory
 def index():
     return redirect('/static/index.html')
 
-@app.route('/static/<p>')
-def static(p):
-    return send_from_directory(p)
+# @app.route('/static/<p>')
+# def static(p):
+#     return send_from_directory(p)
