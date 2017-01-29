@@ -78,10 +78,7 @@ class ResponseDeserializer:
         self.endianness = endianness
 
     def _get_noincrement(self, count):
-        if self.offset + count > len(self.data):
-            raise IndexError('tried to read past end of data')
-
-        return self.data[self.offset:self.offset+count]
+        return self.data[self.offset:min(self.offset+count, len(self.data))]
 
     def _get(self, count):
         d = self._get_noincrement(count)
