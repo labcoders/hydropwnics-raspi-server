@@ -26,5 +26,6 @@ if [ \$? -ne 0 ] ; then
   echo "Pip install failed for requirements!"
   echo "\$OUT"
 fi
+make -C hypwn/frontend
 echo "Deploy complete. Have a nice day."
 EOF
