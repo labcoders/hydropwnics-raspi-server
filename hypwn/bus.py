@@ -355,3 +355,21 @@ class Hype:
     def echo(self, value):
         self.send(EchoRequest(value))
         return EchoResponse.deserialize(self.read())
+
+    def set_light_level(self, state):
+        self.send(LightRelaySet(state))
+        return LightRelayResponse.deserialize(self.read())
+
+    def get_light_level(self, location):
+        if location == 'ambient':
+            self.send(LightSensorRequest())
+            return LightSensorResponse.deserialize(self.read())
+        elif location == 'internal':
+            self.send(LightRelayRequest())
+            return LightRelayResponse.deserialize(self.read())
+        else:
+            raise Exception('Invalid location.')
+
+    def get_temperature(self, location):
+        self.send(TempSensorRequest())
+        return TempSensorResponse.deserialize(self.read())
