@@ -1,4 +1,4 @@
-import smbus
+import serial
 import struct
 
 class Request:
@@ -169,26 +169,22 @@ class Hype:
     class InternalServerError(Exception):
         pass
 
-    ADDRESS = 0x04
-    BUS_NUMBER = 0x01
+    TTY = '/dev/ttyUSB0'
 
     def __init__(
         self,
-        bus_number=BUS_NUMBER,
-        address=ADDRESS,
+        tty=TTY,
     ):
-        self.bus = smbus.SMBus(bus_number)
-        self.address = address
+        self.bus = serial.Serial(TTY)
 
     def _write_byte(self, byte):
-        self.bus.write_byte_data(self.address, 0, byte)
+        self.bus.write(bytearray((byte,)))
 
     def _read_byte(self):
-        self.bus.read_byte_data(self.address, 0)
+        return self.bus.read(1)
 
     def write(self, data):
-        # TODO actually use a bulk write
-        self.bus.write_i2c_block_data(self.address, 0, list(data))
+        self.bus.write(data)
 
     def send(self, request):
         d = request.serialized.value
