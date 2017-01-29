@@ -45,15 +45,17 @@
   function makeToggle(toggleFunction, name) {
     var inputSelector = 'input[name=' + name + ']';
     var input = $(inputSelector);
-    input.click() {
+    input.click(function() {
       var value = input.filter(':checked').val();
-      toggleFunction(value == 'on', success);
+      toggleFunction(value == 'on', function(data){
+        console.log(JSON.stringify(data));
+      });
+    });
   }
 
   $(function() {
-    $("input[name=pump]").click(function() {
-      var value = $("input[name=pump]:checked").val();
-    });
+    makeToggle('pump', setPump);
+    makeToggle('light', setLight);
   });
 });
 
