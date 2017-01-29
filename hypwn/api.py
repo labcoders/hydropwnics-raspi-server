@@ -42,7 +42,7 @@ def light_post():
 def light_get(location):
     return jsonify(
         dict(
-            lightLevel=HYPE_BUS.get_light_level(location).ok,
+            lightLevel=HYPE_BUS.get_light_level(location).value,
         ),
     )
 
